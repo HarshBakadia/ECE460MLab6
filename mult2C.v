@@ -29,13 +29,19 @@ module mult2C (input[7:0] a, input[7:0] b, output reg[7:0] c);
     //Initialise to zero, might be unnecessary as FPGA does this
     initial begin
         c = 0;
+        sign = 0;
+        exponent = 0;
+        mantissa = 0;
         result = 0;
     end
     
     always @(*) begin
         //If either a or b is 0
-        if(a[6:0] == 0 || b[6:0] == 0)
+        if(a == 0 || b == 0)
             c = 0;
+        else if((a[7] == 1 && a[6:0] == 0) || (b[7] == 1 && b[6:0] == 0)) begin
+            c = 0;
+        end 
         else begin
             //sign bit, if same give 0 else 1
             sign = ((a[7] & !b[7]) || (!a[7] & b[7]))? 1: 0;

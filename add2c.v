@@ -27,7 +27,7 @@ module add2C(input[7:0] x, input[7:0] y, output reg[7:0] z);
     reg[2:0] shift;
     reg[9:0] big_Num;
     reg[9:0] small_Num;
-    reg[9:0] result;
+    reg[10:0] result;
     
     reg sign;
     reg[2:0] exponent;
@@ -49,10 +49,14 @@ module add2C(input[7:0] x, input[7:0] y, output reg[7:0] z);
     
     always @(*) begin
         //If either a or b is 0
-        if(x[6:0] == 0 || y[6:0] == 0) begin
-            if(x[6:0] != 0)         z=x;    //only y is 0
-            else if(y[6:0] != 0)    z=y;    //only x is 0
-            else                    z=0;    //both are 0
+        if((x == 0 && y != 0) || (x[7] == 1 && (x[6:0] == 0 && y != 0))) begin
+            z = y;
+        end
+        else if((x != 0 && y == 0) || (y[7] == 1 && (y[6:0] == 0 && x != 0))) begin
+            z = x;
+        end
+        else if(x == 0 && y == 0) begin
+            z = 0;
         end
         else begin
             //Comparison for sign assignment and exponent based on larger
@@ -65,9 +69,9 @@ module add2C(input[7:0] x, input[7:0] y, output reg[7:0] z);
                 Big = y;
             end
             
-            //sign and inital exponent assigned based on larger
-            sign = Big[7];
+           //sign and inital exponent assigned based on larger
             exponent = Big[6:4];
+            sign = Big[7];
             
             //assigning value before shift
             big_Num = {1'b1, Big[3:0], 5'b0};
@@ -80,8 +84,10 @@ module add2C(input[7:0] x, input[7:0] y, output reg[7:0] z);
             //If negative + positive magnitude decreases else magnitude increases
             if(Big[7] == Small[7]) 
                 result = big_Num + small_Num;
-            else
+            
+            else 
                 result = big_Num - small_Num;
+            
             
             //Normalize by findind leftmost 1 and shifting
             //
@@ -108,13 +114,8 @@ module add2C(input[7:0] x, input[7:0] y, output reg[7:0] z);
                 fraction = result[4:1];
                 exponent = exponent - 4;
             end
-            else if(result[4] == 1) begin
-                fraction = result[3:0];
-                exponent = exponent - 5;
-            end
             else begin
                 fraction = 0;
-                exponent = 0;
             end
             z = {sign, exponent, fraction};
         end
