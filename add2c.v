@@ -114,6 +114,22 @@ module add2C(input[7:0] x, input[7:0] y, output reg[7:0] z);
                 fraction = result[4:1];
                 exponent = exponent - 4;
             end
+            else if(result[4] == 1) begin
+                fraction = result[3:0];
+                exponent = exponent - 5;
+            end
+            else if(result[3] == 1) begin
+                fraction = {result[2:0], 1'b0};
+                exponent = exponent - 6;
+            end
+            else if(result[2] == 1) begin
+                fraction = {result[1:0], 2'b00};
+                exponent = exponent - 5;
+            end
+            else if(result[1] == 1) begin
+                fraction = {result[0], 3'b000};
+                exponent = exponent - 6;
+            end
             else begin
                 fraction = 0;
             end

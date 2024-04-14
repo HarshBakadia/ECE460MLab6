@@ -110,8 +110,10 @@ module Matrix_DUT(input clk, input reset,
                     next_State = t3;
                 end
                 t3: begin
+                    a1 = 0;
                     a2 = a12;
                     a3 = a21;
+                    b1 = 0;
                     b2 = b21;
                     b3 = b12;
                     en4 = 1;
@@ -139,14 +141,32 @@ module Matrix_DUT(input clk, input reset,
                     next_State = t6;
                 end
                 t6: begin
+                    a1 = 0;
+                    a2 = 0;
+                    a3 = 0;
+                    b1 = 0;
+                    b2 = 0;
+                    b3 = 0;
                     en3 = 0;
                     next_State = t7;
                 end
                 t7: begin
+                    a1 = 0;
+                    a2 = 0;
+                    a3 = 0;
+                    b1 = 0;
+                    b2 = 0;
+                    b3 = 0;
                     en4 = 0;
                     next_State = tend;
                 end
                 tend: begin
+                    a1 = 0;
+                    a2 = 0;
+                    a3 = 0;
+                    b1 = 0;
+                    b2 = 0;
+                    b3 = 0;
                     en5 = 0;
                     done = 1;
                 end
