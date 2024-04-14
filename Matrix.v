@@ -155,17 +155,17 @@ module Matrix_DUT(input clk, input reset,
         end   
     end
     
- MAC m1 (.clk(clk), .reset(reset), .en(en_1), .in_a(a1), .in_b(b1), .out_a(a1_2), .out_b(b1_4), .out_c(M1_out));
- MAC m2 (.clk(clk), .reset(reset), .en(en_2), .in_a(a1_2), .in_b(b2), .out_a(a2_3), .out_b(b2_5), .out_c(M2_out));
- MAC m3 (.clk(clk), .reset(reset), .en(en_3), .in_a(a2_3), .in_b(b3), .out_a(), .out_b(b3_6), .out_c(M3_out));
+ MAC m1 (.clk(clk), .reset(reset), .en(en1), .in_a(a1), .in_b(b1), .out_a(a1_2), .out_b(b1_4), .out_c(M1_out));
+ MAC m2 (.clk(clk), .reset(reset), .en(en2), .in_a(a1_2), .in_b(b2), .out_a(a2_3), .out_b(b2_5), .out_c(M2_out));
+ MAC m3 (.clk(clk), .reset(reset), .en(en3), .in_a(a2_3), .in_b(b3), .out_a(), .out_b(b3_6), .out_c(M3_out));
  
- MAC m4 (.clk(clk), .reset(reset), .en(en_2), .in_a(a2), .in_b(b1_4), .out_a(a4_5), .out_b(b4_7), .out_c(M4_out));
- MAC m5 (.clk(clk), .reset(reset), .en(en_3), .in_a(a4_5), .in_b(b2_5), .out_a(a5_6), .out_b(b5_8), .out_c(M5_out));
- MAC m6 (.clk(clk), .reset(reset), .en(en_4), .in_a(a5_6), .in_b(b3_6), .out_a(), .out_b(b6_9), .out_c(M6_out));
+ MAC m4 (.clk(clk), .reset(reset), .en(en2), .in_a(a2), .in_b(b1_4), .out_a(a4_5), .out_b(b4_7), .out_c(M4_out));
+ MAC m5 (.clk(clk), .reset(reset), .en(en3), .in_a(a4_5), .in_b(b2_5), .out_a(a5_6), .out_b(b5_8), .out_c(M5_out));
+ MAC m6 (.clk(clk), .reset(reset), .en(en4), .in_a(a5_6), .in_b(b3_6), .out_a(), .out_b(b6_9), .out_c(M6_out));
  
- MAC m7 (.clk(clk), .reset(reset), .en(en_3), .in_a(a3), .in_b(b4_7), .out_a(a7_8), .out_b(), .out_c(M7_out));
- MAC m8 (.clk(clk), .reset(reset), .en(en_4), .in_a(a7_8), .in_b(b5_8), .out_a(a8_9), .out_b(), .out_c(M8_out));
- MAC m9 (.clk(clk), .reset(reset), .en(en_5), .in_a(a8_9), .in_b(b6_9), .out_a(), .out_b(), .out_c(M9_out));
+ MAC m7 (.clk(clk), .reset(reset), .en(en3), .in_a(a3), .in_b(b4_7), .out_a(a7_8), .out_b(), .out_c(M7_out));
+ MAC m8 (.clk(clk), .reset(reset), .en(en4), .in_a(a7_8), .in_b(b5_8), .out_a(a8_9), .out_b(), .out_c(M8_out));
+ MAC m9 (.clk(clk), .reset(reset), .en(en5), .in_a(a8_9), .in_b(b6_9), .out_a(), .out_b(), .out_c(M9_out));
 
             
 endmodule

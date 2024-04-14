@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module add2c(input [7:0] x, input [7:0] y, output reg[7:0] z);
+module add2C(input[7:0] x, input[7:0] y, output reg[7:0] z);
     
     reg[7:0] Big;
     reg[7:0] Small;
@@ -41,6 +41,10 @@ module add2c(input [7:0] x, input [7:0] y, output reg[7:0] z);
         big_Num = 0;
         small_Num = 0;
         result = 0;
+        
+        sign = 0;
+        exponent = 0;
+        fraction = 0;
     end
     
     always @(*) begin
